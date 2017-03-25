@@ -36,26 +36,26 @@
     });
 
     //http://localhost:8080/PPS/index.php/persona/1
-    $app->get('/persona/{id}', function ($req, $res, $args) {
+    $app->get('/persona'/*.'/{id}'*/, function ($req, $res, $args) {
 
         return $res
            ->withHeader('Content-type', 'application/json')
            ->getBody()
            ->write(
             json_encode(
-                Persona::TraerUnaPersona($args['id'])
+                Persona::TraerUnaPersona(/*$args['id']*/$req->getParam('id'))
             )
         );
     });
 
     //http://localhost:8080/PPS/index.php/persona/borrar/3
-    $app->delete('/persona/borrar/{id}', function ($req, $res, $args) {        
+    $app->delete('/persona/borrar'/*.'/{id}'*/, function ($req, $res, $args) {        
         return $res
            ->withHeader('Content-type', 'application/json')
            ->getBody()
            ->write(
             json_encode(
-                Persona::BorrarPersona($args['id'])
+                Persona::BorrarPersona(/*$args['id']*/$req->getParam('id'))
             )
         );
     });
